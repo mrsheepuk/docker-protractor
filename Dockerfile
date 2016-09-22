@@ -8,10 +8,10 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/*
 
 # ffmpeg is hosted at deb-multimedia.org
-RUN curl http://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.3.7_all.deb \
-  -o /tmp/deb-multimedia-keyring_2015.6.1_all.deb && \  
-  dpkg -i /tmp/deb-multimedia-keyring_2015.6.1_all.deb && \
-  rm /tmp/deb-multimedia-keyring_2015.6.1_all.deb && \
+RUN curl http://www.deb-multimedia.org/pool/main/d/deb-multimedia-keyring/deb-multimedia-keyring_2016.8.1_all.deb \
+  -o /tmp/deb-multimedia-keyring.deb && \  
+  dpkg -i /tmp/deb-multimedia-keyring.deb && \
+  rm /tmp/deb-multimedia-keyring.deb && \
   echo "deb http://www.deb-multimedia.org stretch main non-free" >> /etc/apt/sources.list
   
 RUN apt-get update && \
