@@ -31,7 +31,7 @@ RUN apt-get update && \
 
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 
-RUN npm install -g protractor 
+RUN npm install -g protractor@4.0.4 
 
 # Install Selenium and Chrome driver
 RUN webdriver-manager update
