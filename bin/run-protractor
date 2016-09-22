@@ -7,6 +7,9 @@ if [ -n "$MANUAL" ]; then
   done
 fi
 
+echo "Waiting for Selenium..."
+sleep 10
+
 # check if Selenium server is listening @ port 4444
 if nc -z localhost 4444; then
   # install node modules needed by the tests
@@ -17,9 +20,9 @@ if nc -z localhost 4444; then
   # run protractor tests
   mkdir -p target
   if [ -n "$BASEURL" ]; then
-    protractor --baseUrl=$BASEURL >target/protractor.out 2>&1
+    protractor --baseUrl=$BASEURL
   else
-    protractor >target/protractor.out 2>&1
+    protractor
   fi
 
 
