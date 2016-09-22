@@ -41,7 +41,7 @@ RUN adduser --home /project --uid 1100 \
   --disabled-login --disabled-password --gecos node node
 
 # Add main configuration file
-ADD supervisord.conf /etc/supervisor/supervisor.conf
+ADD supervisor.conf /etc/supervisor/supervisor.conf
 
 # Add service defintions for Xvfb, Selenium and Protractor runner
 ADD supervisord/*.conf /etc/supervisor/conf.d/
