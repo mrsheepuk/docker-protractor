@@ -23,7 +23,7 @@ In order to run tests from a CI system, execute the following:
 ```
 docker run --rm -v <test project location>:/project mrsheepuk/protractor
 ```
-The container will terminate automatically after the tests are completed. The output of supervisord visible on the console is not interesting in most circumstances. You should check `target/supervsor.out` file to see the output of Protractor. Dispalying the file in an Unix terminal using `cat` is recommended over opening it using an editor because the file contains ANSI escape sequences.
+The container will terminate automatically after the tests are completed. The output of supervisord visible on the console is not interesting in most circumstances. You should check `target/supervisor.out` file to see the output of Protractor. Displaying the file in an Unix terminal using `cat` is recommended over opening it using an editor because the file contains ANSI escape sequences.
 
 To run against another container, execute as follows (this example assumes that the image you are testing exposes its web site on port 3000):
 ```
