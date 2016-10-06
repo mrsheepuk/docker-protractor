@@ -1,7 +1,7 @@
 Dockerfile for [Protractor](http://angular.github.io/protractor/) test execution
 ================================================================================
 
-Based on [caltha/protractor](https://bitbucket.org/rkrzewski/dockerfile), this image contains a fully configured environment for running Protractor tests under Chromium and Firefox browsers.
+Based on [caltha/protractor](https://bitbucket.org/rkrzewski/dockerfile), this image contains a fully configured environment for running Protractor tests under the Chromium browser.
 
 This version additionally supports linking docker containers together to test software in another container, and passing a custom base URL into your protractor specs so you don't have to hard-code the URL in them. 
 
