@@ -13,7 +13,6 @@ Installed software
    * [Selenium webdriver](http://docs.seleniumhq.org/docs/03_webdriver.jsp) Browser instrumentation agent used by Protractor to execute the tests
    * [OpenJDK 8 JRE](http://openjdk.java.net/projects/jdk8/) Needed by Selenium
    * [Chromium](http://www.chromium.org/Home) The OSS core part of Google Chrome browser
-   * [Firefox](https://www.mozilla.org/en-US/firefox/desktop/) Firefox browser
    * [Protractor](http://angular.github.io/protractor/) An end-to-end test framework for web applications
    * [Supervisor](http://supervisord.org/) Process controll system used to manage Xvfb and Selenium background processes needed by Protractor
 
@@ -39,4 +38,21 @@ If you want to run the tests interactively you can launch the container and ente
 CONTAINER=$(docker run -d -v <test project location>:/project --env MANUAL=yes mrsheepuk/protractor)
 docker exec -ti $CONTAINER sudo -i -u node bash
 ```
-When inside the container you can run the tests at the console by simply invoking `protractor`. When you are done, you terminate the Protractor container with `docker kill $CONTAINER`
+When inside the container you can run the tests at the console by simply invoking `protractor`. When you are done, you terminate the Protractor container with `docker kill $CONTAINER`.
+
+Your protractor.conf.js must specify the no-sandbox option for Chrome to cleanly run inside Docker. A minimal example config would be:
+
+```
+exports.config = {
+  seleniumAddress: 'http://localhost:4444/wd/hub',
+  framework: "jasmine2",
+  specs: ['*.spec.js'],
+  // Chrome is not allowed to create a SUID sandbox when running inside Docker  
+  capabilities: {
+    'browserName': 'chrome',
+    'chromeOptions': {
+      'args': ['no-sandbox']
+    }
+  }
+};
+```
