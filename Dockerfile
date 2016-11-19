@@ -31,6 +31,10 @@ RUN apt-get update && \
 
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 
+# Upgrade NPM to latest (address issue #3)
+RUN npm install -g npm
+
+# Install Protractor
 RUN npm install -g protractor@4.0.4 
 
 # Install Selenium and Chrome driver
