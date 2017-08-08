@@ -13,6 +13,7 @@ Installed software
    * [Selenium webdriver](http://docs.seleniumhq.org/docs/03_webdriver.jsp) Browser instrumentation agent used by Protractor to execute the tests
    * [OpenJDK 8 JRE](http://openjdk.java.net/projects/jdk8/) Needed by Selenium
    * [Chromium](http://www.chromium.org/Home) The OSS core part of Google Chrome browser
+   * [Firefox](https://www.mozilla.org) Firefox browser
    * [Protractor](http://angular.github.io/protractor/) An end-to-end test framework for web applications
    * [Supervisor](http://supervisord.org/) Process controll system used to manage Xvfb and Selenium background processes needed by Protractor
 
