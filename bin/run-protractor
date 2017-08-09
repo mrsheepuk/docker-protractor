@@ -1,5 +1,7 @@
 #!/bin/bash
 
+MANUAL=yes
+
 if [ -n "$MANUAL" ]; then
   # if manual mode is enabled, just coast making supervisord happy
   while true; do

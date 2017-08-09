@@ -19,6 +19,9 @@ Installed software
 
 Running
 -------
+
+For Flexys use, MANUAL is set automatically.
+
 In order to run tests from a CI system, execute the following:
 ```
 docker run --rm -v <test project location>:/project flexys/docker-protractor
