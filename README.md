@@ -19,28 +19,8 @@ Installed software
 
 Running
 -------
+I have stripped out the automatic running of protractor as we inject the tests through [Concourse](http://concourse.ci)
 
-For Flexys use, MANUAL is set automatically.
-
-In order to run tests from a CI system, execute the following:
-```
-docker run --rm -v <test project location>:/project flexys/docker-protractor
-```
-The container will terminate automatically after the tests are completed.
-
-To run against another container, execute as follows (this example assumes that the image you are testing exposes its web site on port 3000):
-```
-docker run -d --name=webe2e <image to test>
-docker run --rm --link=webe2e:webe2e -v <test project location>:/project --env BASEURL=http://webe2e:3000/ flexys/docker-protractor
-docker rm -f webe2e
-```
-
-You can also use the BASEURL variable without container linking, to test any arbitrary web site. If you wish to use the BASEURL functionality, you must use relative URLs within your test specs (e.g. `browser.get("/profile/")` instead of `browser.get("http://test.com/profile/")`.
-
-If you want to run the tests interactively you can launch the container and enter into it:
-```
-CONTAINER=$(docker run -d -v <test project location>:/project --env MANUAL=yes flexys/docker-protractor)
-docker exec -ti $CONTAINER sudo -i -u node bash
 ```
 When inside the container you can run the tests at the console by simply invoking `protractor`. When you are done, you terminate the Protractor container with `docker kill $CONTAINER`.
 
