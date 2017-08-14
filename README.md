@@ -21,7 +21,6 @@ Running
 -------
 I have stripped out the automatic running of protractor as we inject the tests through [Concourse](http://concourse.ci)
 
-```
 When inside the container you can run the tests at the console by simply invoking `protractor`. When you are done, you terminate the Protractor container with `docker kill $CONTAINER`.
 
 Your protractor.conf.js must specify the no-sandbox option for Chrome to cleanly run inside Docker. A minimal example config would be:
