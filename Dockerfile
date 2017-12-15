@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --fix-missing && \
   apt-get install -y \
     wget \
+    curl \
     build-essential \
     libssl-dev \
     openjdk-8-jre \
@@ -14,8 +15,6 @@ RUN apt-get update --fix-missing && \
     libexif12 \
     chromium-browser \
     firefox \
-    npm \
-    nodejs \
     supervisor \
     netcat-traditional \
     ffmpeg && \
@@ -23,24 +22,19 @@ RUN apt-get update --fix-missing && \
   rm -rf /var/lib/apt/lists/*
 
 
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN apt-get update && apt-get install -y make git
 
 #RUN node --version
 
-# Upgrade NPM to latest (address issue #3)
-RUN npm install -g npm@5.5.1
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
+  apt-get update && \
+  apt-get install -y nodejs && \
+  rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g n
+#RUN ln -s /usr/bin/nodejs /usr/bin/node
 
-# Install node.js 6.11.2
-RUN n 6.11.2
+RUN npm install -g protractor@4.0.x
 
-#RUN npm install -g npm
-
-RUN nodejs --version
-
-# Install Protractor
-RUN npm install -g protractor
 
 # Install Selenium and Chrome driver
 RUN webdriver-manager update --versions.chrome=2.33
