@@ -28,12 +28,14 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 #RUN node --version
 
 # Upgrade NPM to latest (address issue #3)
-RUN npm install -g npm
+#RUN npm install -g npm
 
 RUN npm install -g n
 
 # Install node.js 6.11.2
 RUN n 6.11.2
+
+RUN npm install -g npm
 
 RUN nodejs --version
 
