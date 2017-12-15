@@ -41,7 +41,7 @@ RUN nodejs --version
 RUN npm install -g protractor
 
 # Install Selenium and Chrome driver
-RUN webdriver-manager update
+RUN webdriver-manager update --versions.chrome=2.33
 
 # Add a non-privileged user for running Protrator
 RUN adduser --home /project --uid 1100 \
