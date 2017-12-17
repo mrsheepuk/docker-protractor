@@ -13,7 +13,6 @@ RUN apt-get update --fix-missing && \
     xvfb \
     libgconf-2-4 \
     libexif12 \
-    chromium-browser \
     firefox \
     supervisor \
     netcat-traditional \
@@ -22,22 +21,20 @@ RUN apt-get update --fix-missing && \
   rm -rf /var/lib/apt/lists/*
 
 
-RUN apt-get update && apt-get install -y make git
-
-#RUN node --version
 
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
   apt-get update && \
   apt-get install -y nodejs && \
   rm -rf /var/lib/apt/lists/*
 
-#RUN ln -s /usr/bin/nodejs /usr/bin/node
+
+RUN apt-get update && apt-get install -y chromium-browser
 
 RUN npm install -g protractor@4.0.x
 
 
 # Install Selenium and Chrome driver
-RUN webdriver-manager update --versions.chrome=2.33
+RUN webdriver-manager update
 
 # Add a non-privileged user for running Protrator
 RUN adduser --home /project --uid 1100 \
