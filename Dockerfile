@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update --fix-missing && \
   apt-get install -y \
+    apt-utils \
     wget \
     curl \
     build-essential \
@@ -21,10 +22,17 @@ RUN apt-get update --fix-missing && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*
 
+# Set the locale (dates may be borked in protractor if not)
+RUN apt-get update --fix-missing && apt-get install -y locales locales-all
+RUN locale-gen en_GB.UTF-8
+ENV LANG en_GB.UTF-8
+ENV LANGUAGE en_GB:en
+ENV LC_ALL en_GB.UTF-8
+
 
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-  apt-get update && \
+  apt-get update --fix-missing && \
   apt-get install -y nodejs && \
   rm -rf /var/lib/apt/lists/*
 
