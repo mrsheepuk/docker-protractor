@@ -3,10 +3,11 @@ Dockerfile for [Protractor](http://angular.github.io/protractor/) test execution
 
 Based on [caltha/protractor](https://bitbucket.org/rkrzewski/dockerfile), this image contains a fully configured environment for running Protractor tests under the Chromium browser.
 
-This version additionally supports linking docker containers together to test software in another container, and passing a custom base URL into your protractor specs so you don't have to hard-code the URL in them. 
+This version additionally supports linking docker containers together to test software in another container, and passing a custom base URL into your protractor specs so you don't have to hard-code the URL in them.
 
 Installed software
 ------------------
+   * [locales][http://jaredmarkell.com/docker-and-locales/] This image is configures to en_GB as this is where we test.
    * [Xvfb](http://unixhelp.ed.ac.uk/CGI/man-cgi?Xvfb+1) The headless X server, for running browsers inside Docker
    * [node.js](http://nodejs.org/) The runtime platform for running JavaScript on the server side, including Protractor tests
    * [npm](https://www.npmjs.com/) Node.js package manager used to install Protractor and any specific node.js modules the tests may need
