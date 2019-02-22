@@ -3,7 +3,6 @@ FROM ubuntu:xenial
 ENV DEBIAN_FRONTEND noninteractive
 
 
-
 RUN apt-get update --fix-missing && \
   apt-get install -y \
     git \
@@ -19,28 +18,28 @@ RUN apt-get update --fix-missing && \
     firefox \
     supervisor \
     netcat-traditional \
-    ffmpeg && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
+    ffmpeg
+
+RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main" > /etc/apt/sources.list.d/google-cloud-sdk.list
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
 # Set the locale (dates may be borked in protractor if not)
-RUN apt-get update --fix-missing && apt-get install -y locales locales-all
+RUN apt-get update && apt-get install -y locales locales-all
 RUN locale-gen en_GB.UTF-8
 ENV LANG en_GB.UTF-8
 ENV LANGUAGE en_GB:en
 ENV LC_ALL en_GB.UTF-8
 
 
+RUN apt-get install -y google-cloud-sdk
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
   apt-get update --fix-missing && \
-  apt-get install -y nodejs && \
-  rm -rf /var/lib/apt/lists/*
+  apt-get install -y nodejs chromium-browser protractor
 
-
-RUN apt-get update --fix-missing && apt-get install -y chromium-browser
 RUN npm install -g protractor
 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Selenium and Chrome driver
 RUN webdriver-manager update
