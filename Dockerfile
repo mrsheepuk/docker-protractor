@@ -35,7 +35,7 @@ RUN apt-get install -y google-cloud-sdk
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
   apt-get update --fix-missing && \
-  apt-get install -y nodejs chromium-browser protractor
+  apt-get install -y nodejs chromium-browser
 
 RUN npm install -g protractor
 
