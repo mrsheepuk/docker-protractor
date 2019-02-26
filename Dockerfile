@@ -18,6 +18,7 @@ RUN apt-get update --fix-missing && \
     firefox \
     supervisor \
     netcat-traditional \
+    jq \
     ffmpeg
 
 RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main" > /etc/apt/sources.list.d/google-cloud-sdk.list
