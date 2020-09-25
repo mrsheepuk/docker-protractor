@@ -2,24 +2,23 @@ FROM ubuntu:xenial
 
 ENV DEBIAN_FRONTEND noninteractive
 
-
 RUN apt-get update --fix-missing && \
   apt-get install -y \
-    git \
-    apt-utils \
-    wget \
-    curl \
-    build-essential \
-    libssl-dev \
-    openjdk-8-jre \
-    xvfb \
-    libgconf-2-4 \
-    libexif12 \
-    firefox \
-    supervisor \
-    netcat-traditional \
-    jq \
-    ffmpeg
+  git \
+  apt-utils \
+  wget \
+  curl \
+  build-essential \
+  libssl-dev \
+  openjdk-8-jre \
+  xvfb \
+  libgconf-2-4 \
+  libexif12 \
+  firefox \
+  netcat-traditional \
+  jq \
+  ffmpeg \
+  chromium-browser
 
 RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main" > /etc/apt/sources.list.d/google-cloud-sdk.list
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
@@ -34,16 +33,9 @@ ENV LC_ALL en_GB.UTF-8
 
 RUN apt-get install -y google-cloud-sdk
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-  apt-get update --fix-missing && \
-  apt-get install -y nodejs chromium-browser
-
-RUN npm install -g protractor
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install Selenium and Chrome driver
-RUN webdriver-manager update
 
 # Add a non-privileged user for running Protrator
 RUN adduser --home /project --uid 1100 \
@@ -52,7 +44,7 @@ RUN adduser --home /project --uid 1100 \
 # Add main configuration file
 ADD supervisor.conf /etc/supervisor/supervisor.conf
 
-# Add service defintions for Xvfb, Selenium and Protractor runner
+# Add service defintions for Xvfb
 ADD supervisord/*.conf /etc/supervisor/conf.d/
 
 # Container's entry point, executing supervisord in the foreground
