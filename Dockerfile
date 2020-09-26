@@ -31,8 +31,9 @@ ENV LANGUAGE en_GB:en
 ENV LC_ALL en_GB.UTF-8
 
 
-RUN apt-get install -y google-cloud-sdk \
-  nodejs
+RUN apt-get install -y google-cloud-sdk
+
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
