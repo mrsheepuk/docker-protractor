@@ -11,11 +11,12 @@ Installed software
    * [Xvfb](http://unixhelp.ed.ac.uk/CGI/man-cgi?Xvfb+1) The headless X server, for running browsers inside Docker
    * [node.js](http://nodejs.org/) The runtime platform for running JavaScript on the server side, including Protractor tests
    * [npm](https://www.npmjs.com/) Node.js package manager used to install Protractor and any specific node.js modules the tests may need
+   * [Selenium webdriver](http://docs.seleniumhq.org/docs/03_webdriver.jsp) Browser instrumentation agent used by Protractor to execute the tests
    * [OpenJDK 8 JRE](http://openjdk.java.net/projects/jdk8/) Needed by Selenium
    * [Chromium](http://www.chromium.org/Home) The OSS core part of Google Chrome browser
    * [Firefox](https://www.mozilla.org) Firefox browser
    * [Protractor](http://angular.github.io/protractor/) An end-to-end test framework for web applications
-   * [Supervisor](http://supervisord.org/) Process controll system used to manage Xvfb
+   * [Supervisor](http://supervisord.org/) Process controll system used to manage Xvfb and Selenium background processes needed by Protractor
 
 Running
 -------
@@ -27,7 +28,7 @@ Your protractor.conf.js must specify the no-sandbox option for Chrome to cleanly
 
 ```
 exports.config = {
-  directConnect: true,
+  seleniumAddress: 'http://localhost:4444/wd/hub',
   framework: "jasmine2",
   specs: ['*.spec.js'],
   // Chrome is not allowed to create a SUID sandbox when running inside Docker  
