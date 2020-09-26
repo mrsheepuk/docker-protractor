@@ -18,7 +18,6 @@ RUN apt-get update --fix-missing && \
   netcat-traditional \
   jq \
   ffmpeg \
-  supervisor \
   chromium-browser
 
 RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main" > /etc/apt/sources.list.d/google-cloud-sdk.list
