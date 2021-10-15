@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -11,7 +11,7 @@ RUN apt-get update --fix-missing && \
     curl \
     build-essential \
     libssl-dev \
-    openjdk-8-jre \
+    openjdk-11-jre \
     xvfb \
     libgconf-2-4 \
     libexif12 \
@@ -21,7 +21,7 @@ RUN apt-get update --fix-missing && \
     jq \
     ffmpeg
 
-RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main" > /etc/apt/sources.list.d/google-cloud-sdk.list
+RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
 # Set the locale (dates may be borked in protractor if not)
@@ -34,7 +34,7 @@ ENV LC_ALL en_GB.UTF-8
 
 RUN apt-get install -y google-cloud-sdk
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
   apt-get update --fix-missing && \
   apt-get install -y nodejs chromium-browser
 
